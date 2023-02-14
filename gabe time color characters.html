@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Alive Time!@@</title>
+    <title>Gabe's Time</title>
     <style>
       #counter {
-        font-size: 37px;
+        font-size: 40px;
         font-weight: bold;
         color: black;
       }
       body {
-        background-color: #333333;
+        background-color: #d04c73;
         color: white;
-        font-size: 22px;
+        font-size: 40px;
         font-family: monospace;
+      }
+      h1 {
+        color: white;
       }
     </style>
   </head>
@@ -36,20 +39,19 @@
 
         // Random color generator for text
         function randomColor() {
-          var letters = '0123456789ABCDEF';
-          var color = '#';
-          for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
+          var r = Math.floor(Math.random() * 21); // limit red hue to 20 out of 255
+          var g = Math.floor(Math.random() * 256);
+          var b = Math.floor(Math.random() * 256);
+          return `rgb(${r}, ${g}, ${b})`;
         }
-        
-        var counterHTML = "";
-        var timeString = "Time since June 15, 1998 at 8:35 am: " + years + " years, " + months + " months, " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
-        for (var i = 0; i < timeString.length; i++) {
-          counterHTML += "<span style='color:" + randomColor() + "'>" + timeString.charAt(i) + "</span>";
+
+        var timeString = "Time since June 15, 1998 at 8:35 am:<br>" + years + " years<br>" + months + " months<br>" + days + " days<br>" + hours + " hours<br>" + minutes + " minutes<br>" + seconds + " seconds";
+        var coloredString = "";
+        var words = timeString.split("<br>");
+        for (var i = 0; i < words.length; i++) {
+          coloredString += "<span style='color:" + randomColor() + "'>" + words[i] + "<br></span>";
         }
-        counterDiv.innerHTML = counterHTML;
+        counterDiv.innerHTML = coloredString;
       }
     </script>
   </body>
