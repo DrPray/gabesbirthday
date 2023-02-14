@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alive Time!@@</title>
+    <style>
+      #counter {
+        font-size: 37px;
+        font-weight: bold;
+        color: black;
+      }
+      body {
+        background-color: #333333;
+        color: white;
+        font-size: 22px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gabe's Time</h1>
+    <div id="counter"></div>
+    <script>
+      var startDate = new Date('June 15, 1998 08:35:00');
+      var counterDiv = document.getElementById("counter");
+      setInterval(updateCounter, 1000); // update every second
+
+      function updateCounter() {
+        var currentDate = new Date();
+        var secondsSince = Math.floor((currentDate - startDate) / 1000);
+        var years = Math.floor(secondsSince / 31536000);
+        var months = Math.floor((secondsSince % 31536000) / 2592000);
+        var days = Math.floor(((secondsSince % 31536000) % 2592000) / 86400);
+        var hours = Math.floor((((secondsSince % 31536000) % 2592000) % 86400) / 3600);
+        var minutes = Math.floor(((((secondsSince % 31536000) % 2592000) % 86400) % 3600) / 60);
+        var seconds = (((secondsSince % 31536000) % 2592000) % 86400) % 3600 % 60;
+
+        // Random color generator for text
+        function randomColor() {
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+        
+        var counterHTML = "";
+        var timeString = "Time since June 15, 1998 at 8:35 am: " + years + " years, " + months + " months, " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+        for (var i = 0; i < timeString.length; i++) {
+          counterHTML += "<span style='color:" + randomColor() + "'>" + timeString.charAt(i) + "</span>";
+        }
+        counterDiv.innerHTML = counterHTML;
+      }
+    </script>
+  </body>
+</html>
